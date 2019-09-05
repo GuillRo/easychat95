@@ -1,0 +1,9 @@
+.Input {
+  box-shadow: inset -1px -1px 0px 0px rgba(0, 0, 0, 0.44);
+  border-bottom: solid 2px rgb(255, 255, 255);
+  border-right: solid 2px rgb(255, 255, 255);
+  border-left: solid 2px rgb(90, 90, 90);
+  border-top: solid 2px rgb(90, 90, 90);
+  padding: 0 5px;
+  /* flex-grow: 1; */
+}

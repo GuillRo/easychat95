@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
 
-function App() {
+import MainLayout from './layouts/MainLayout/MainLayout'
+import ChatRoom from './components/ChatRoom/ChatRoom'
+import ConnectedUsers from './components/ConnectedUsers/ConnectedUsers'
+import Logo from './components/Logo/Logo'
+import Advertisement from './components/Advertisement/Advertisement'
+import Footer from './components/Footer/Footer'
+
+import { view } from 'react-easy-state'
+import store from './store'
+
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:8080')
+const user = store.user
+
+
+const App = (props) => {
+  
+  user.updateSocket(socket)
+  // const [userList, setUserList] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // {footer}
+    <MainLayout
+      advertisement={<Advertisement />}
+      logo={<Logo />}
+      chatRoom={<ChatRoom />}
+      connectedUsers={<ConnectedUsers />}
+    >
+      <Footer />
+    </MainLayout>
+  )
 }
 
-export default App;
+export default view(App)

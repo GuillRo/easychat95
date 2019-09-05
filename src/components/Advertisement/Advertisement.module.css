@@ -1,0 +1,56 @@
+.Advertisement {
+  margin: 0 25px;
+  min-height: 80px;
+  flex-grow: 1;
+  background-image: url("/background-berry.jpg");
+  border-top: solid 2px rgb(160, 160, 160);
+  border-left: solid 2px rgb(160, 160, 160);
+  border-bottom: solid 1px white;
+  border-right: solid 1px white;
+  display: flex;
+  /* align-items: center; */
+  justify-content: left;
+  padding: 0 25px;
+  /* font-family: 'Times New Roman', Times, serif; */
+  /* font-family: 'Press Start 2P', cursive; */
+  font-family: 'Margarine', cursive;
+  /* text-align: center; */
+  /* text-anchor: middle; */
+  /* display: flex; */
+  flex-direction: column;
+}
+
+.Advertisement :first-child {
+  /* margin: 10px; */
+  /* color: #E34388; */
+  /* color: yellow; */
+  background: linear-gradient(145deg, #e05252 0%, #ece909 50%, #e05252 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+.Advertisement :last-child {
+  font-size: 24px;
+  color: yellow;
+}
+
+@media (max-width: 950px) {
+  .Advertisement {
+    justify-content: center;
+  }
+  .Advertisement :first-child {
+    font-size: 24px;
+  }
+  .Advertisement :last-child {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 725px) {
+  .Advertisement {
+    display: none;
+  }
+}

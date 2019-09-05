@@ -1,0 +1,40 @@
+.LoggedUserFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.LoggedUserFooter :nth-child(1n+0) {
+  margin-right: 10px;
+}
+
+.LoggedUserFooter :last-child {
+  margin-right: 0;
+}
+
+.form {
+width:100%;
+display: flex;
+justify-content: space-between;
+}
+
+.Input {
+  flex-grow: 1;
+}
+
+.Input-red {
+  animation-name: emptyinput;
+  animation-duration: 1s;
+}
+
+@keyframes emptyinput {
+  0%,
+  100% {
+    outline: 2px solid rgba(255, 0, 0, 0);
+  }
+
+  50% {
+    /* color: red; */
+    outline: 2px solid red;
+  }
+}
