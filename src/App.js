@@ -11,7 +11,7 @@ import { view } from 'react-easy-state'
 import store from './store'
 
 import io from 'socket.io-client'
-const socket = io.connect('http://localhost:8080')
+const socket = io.connect()
 const user = store.user
 
 
