@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
+import shortid from 'shortid'
 
 import Message from '../Message/Message'
 
@@ -26,14 +27,14 @@ const ChatRoom = (props) => {
       fetchInitialData().then(data => {
         let arrayMsg = []
         data['5'].forEach(msg => {
-          arrayMsg.push(<Message name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg}/>)
+          arrayMsg.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg}/>)
         })
         setChatMessages(_.cloneDeep(arrayMsg))
       })
     }
     user.socket.on('message', msg => {
       let msgArray = chatMessages
-      msgArray.push(<Message name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg}/>)
+      msgArray.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg}/>)
       setChatMessages(_.cloneDeep(msgArray))
     })
   })

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import User from '../User/User'
 
 import _ from 'lodash'
+import shortid from 'shortid'
 
 import styles from './ConnectedUsers.module.css'
 
@@ -24,15 +25,15 @@ const ConnectedUsers = () => {
     if (!fetched) {
       fetchInitialData().then(data => {
         let usersArray = []
-        data.usersOnline.forEach(user => usersArray.push(<User username={user.username} color={user.colorUser} />))
+        data.usersOnline.forEach(user => usersArray.push(<User key={shortid.generate()} username={user.username} color={user.colorUser} font={user.fontUser} />))
         setUsers(_.cloneDeep(usersArray))
         setFetched(true)
       })
     }
 
-    user.socket.on('new user', (username, colorUser, colorMsg) => {
+    user.socket.on('new user', (username, colorUser, colorMsg, fontUser, fontMsg) => {
       let usersArray = users
-      usersArray.push(<User username={username} color={colorUser} />)
+      usersArray.push(<User key={shortid.generate()} username={username} color={colorUser} font={fontUser}/>)
       setUsers(_.cloneDeep(usersArray))
     })
 
@@ -43,7 +44,7 @@ const ConnectedUsers = () => {
 
       fetchInitialData().then(data => {
         let usersArray = []
-        data.usersOnline.forEach(user => usersArray.push(<User username={user.username} color={user.colorUser} />))
+        data.usersOnline.forEach(user => usersArray.push(<User key={shortid.generate()} username={user.username} color={user.colorUser} font={user.fontUser}/>))
         setUsers(_.cloneDeep(usersArray))
       })
     })
@@ -51,7 +52,7 @@ const ConnectedUsers = () => {
     user.socket.on('disconnect', () => {
       fetchInitialData().then(data => {
         let usersArray = []
-        data.usersOnline.forEach(user => usersArray.push(<User username={user.username} color={user.colorUser} />))
+        data.usersOnline.forEach(user => usersArray.push(<User key={shortid.generate()} username={user.username} color={user.colorUser} font={user.fontUser}/>))
         setUsers(_.cloneDeep(usersArray))
       })
     })

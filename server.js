@@ -26,13 +26,13 @@ app.get('/*', (req, res) => {
 io.on('connection', socket => {
   console.log('user connected')
 
-  socket.on('new user', (username, colorUser, colorMsg) => {
+  socket.on('new user', (username, colorUser, colorMsg, fontUser, fontMsg) => {
     console.log(username + ' logged in')
 
     let users = JSON.parse(fs.readFileSync('./db/lastMessages.json'))
-    users.usersOnline.push({ username, socket: socket.id, colorUser, colorMsg })
+    users.usersOnline.push({ username, socket: socket.id, colorUser, colorMsg, fontUser, fontMsg })
     fs.writeFileSync('./db/lastMessages.json', JSON.stringify(_.cloneDeep(users)))
-    io.sockets.emit('new user', username, colorUser, colorMsg)
+    io.sockets.emit('new user', username, colorUser, colorMsg, fontUser, fontMsg )
   })
 
   socket.on('message', msg => {

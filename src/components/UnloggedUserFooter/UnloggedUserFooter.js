@@ -16,7 +16,8 @@ const UnloggedUserFooter = (props) => {
 
   const [username, setUsername] = useState(user.username)
   const [customInputStyle, setCustomInputStyle] = useState('')
-  const colors = ['red', 'purple', 'violet', 'blue', 'darkcyan', 'brown', 'indigo', 'green', 'magenta', 'teal']
+  const colors = ['white', 'yellow', 'violet', 'blue', 'darkcyan', 'indigo', 'green', 'magenta', 'teal', 'darkorange', 'darkturquoise', 'darksalmon', 'turquoise', 'royalblue']
+  const fonts = ['WaltographRegular', 'BahianaRegular', 'OrbitRacerOrbitRacer', 'ChomskyRegular', 'GnraleStationExtended', 'QuaeriteRegnumDeiRegular', 'AghjaMedium', 'SFPixelateRegular', 'RujisHandwritingFontv20Medium', 'Margarine']
 
   useEffect(() => {
     if (customInputStyle !== '') {
@@ -43,7 +44,9 @@ const UnloggedUserFooter = (props) => {
         user.updateUsername(username)
         user.updateColorUser(colors[Math.floor(Math.random() * colors.length)])
         user.updateColorMsg(colors[Math.floor(Math.random() * colors.length)])
-        user.socket.emit('new user', user.username, user.colorUser, user.colorMsg)
+        user.updateFontUser(fonts[Math.floor(Math.random() * fonts.length)])
+        user.updateFontMsg(fonts[Math.floor(Math.random() * fonts.length)])
+        user.socket.emit('new user', user.username, user.colorUser, user.colorMsg, user.fontUser, user.fontMsg)
         user.updateLogged(true)
       } else {
         alert(' username already taken')

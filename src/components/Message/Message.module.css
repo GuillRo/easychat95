@@ -1,3 +1,25 @@
-.Message p{
+.Message {
+  margin-top: 5px;
+  /* justify-content: center; */
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  /* ji */
+
+}
+
+.Message p {
   display: inline;
+}
+
+.body {
+font-size: 24px;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 0.1;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.65);
 }

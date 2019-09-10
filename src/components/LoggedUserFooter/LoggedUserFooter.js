@@ -33,7 +33,7 @@ const LoggedUserFooter = (props) => {
   const submit = event => {
     event.preventDefault()
     if (inputValue.toString().length > 0) {
-      user.socket.emit('message', { username: user.username, inputValue, colorUser: user.colorUser, colorMsg: user.colorMsg })
+      user.socket.emit('message', { username: user.username, inputValue, colorUser: user.colorUser, colorMsg: user.colorMsg, fontUser: user.fontUser, fontMsg: user.fontMsg })
     }
     else if (customInputStyle === '') {
       setCustomInputStyle(styles['Input-red'])

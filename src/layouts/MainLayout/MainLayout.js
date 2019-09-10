@@ -9,8 +9,8 @@ import styles from './MainLayout.module.css'
 const MainLayout = (props) => {
   return (
     <>
-      <div className={styles.container}>
-        {/* <div className={[styles.container, styles.crt].join(' ')}> */}
+      {/* <div className={styles.container}> */}
+        <div className={[styles.container, styles.crt].join(' ')}>
         <header className={[styles.row, styles.header].join(' ')}>
           {props.logo}
           {props.advertisement}
