@@ -61,8 +61,6 @@ const ConnectedUsers = () => {
   return (
     <>
       <div className={styles.ConnectedUsers}>
-        {/* <div>john</div>
-        <div>Tom</div> */}
         {users}
       </div>
     </>

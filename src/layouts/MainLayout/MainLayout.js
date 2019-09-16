@@ -9,8 +9,8 @@ import styles from './MainLayout.module.css'
 const MainLayout = (props) => {
   return (
     <>
-      {/* <div className={styles.container}> */}
-        <div className={[styles.container, styles.crt].join(' ')}>
+      <div className={styles.container}>
+        {/* <div className={[styles.container, styles.crt].join(' ')}> */}
         <header className={[styles.row, styles.header].join(' ')}>
           {props.logo}
           {props.advertisement}
@@ -20,7 +20,7 @@ const MainLayout = (props) => {
           <MediaQuery query="(min-width: 726px)">
             <Split
               sizes={[85, 15]}
-              style={{ display: 'flex', flex: '1 1 auto' }}>
+              style={{ display: 'flex', flex: '1 1 auto', alignItems: 'center' }}>
               {props.chatRoom}
               {props.connectedUsers}
             </Split>

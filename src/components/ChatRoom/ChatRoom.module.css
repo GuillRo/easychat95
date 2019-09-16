@@ -1,12 +1,13 @@
 .ChatRoom {
   /* background-color: rgb(255, 255, 255); */
-  height: 100%;
+  height: 80vh;
   padding: 10px 10px;
   border-top: solid 2px rgb(160, 160, 160);
   border-left: solid 2px rgb(160, 160, 160);
   border-bottom: solid 1px white;
   border-right: solid 1px white;
   background-color: #CED0CF;
+  overflow: scroll;
 }
 
 .banner {

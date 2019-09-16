@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import _ from 'lodash'
 import shortid from 'shortid'
 
@@ -10,10 +10,10 @@ import { view } from 'react-easy-state'
 import store from '../../store'
 const user = store.user
 
-
 const ChatRoom = (props) => {
 
   const [chatMessages, setChatMessages] = useState([])
+  const messagesEndRef = useRef(null)
 
   const fetchInitialData = async () => {
     const response = await fetch('/lastdata', { method: 'GET' })
@@ -21,30 +21,34 @@ const ChatRoom = (props) => {
     return data
   }
 
+  // just to scroll to the bottom when too much messages
+  // there is also a dummy div at the bottom of the return
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
 
   useEffect(() => {
     if (chatMessages.length < 1) {
       fetchInitialData().then(data => {
-        let arrayMsg = []
+        let lastMessages = []
         data['5'].forEach(msg => {
-          arrayMsg.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg}/>)
+          lastMessages.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg} />)
         })
-        setChatMessages(_.cloneDeep(arrayMsg))
+        setChatMessages(lastMessages)
       })
     }
     user.socket.on('message', msg => {
-      let msgArray = chatMessages
-      msgArray.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg}/>)
-      setChatMessages(_.cloneDeep(msgArray))
+      let msgArray = _.cloneDeep(chatMessages)
+      msgArray.push(<Message key={shortid.generate()} name={msg.username} text={msg.inputValue} colorUser={msg.colorUser} colorMsg={msg.colorMsg} fontUser={msg.fontUser} fontMsg={msg.fontMsg} />)
+      setChatMessages(msgArray)
     })
+    scrollToBottom()
   })
 
   return (
-    <div className={styles.ChatRoom}>
-    {/* <div className={styles.banner}>
-Heyyy
-    </div> */}
+    <div id="chatRoom" className={styles.ChatRoom}>
       {chatMessages}
+      <div className="dummy-div-to-scroll-bottom" ref={messagesEndRef} />
     </div>
   )
 }
