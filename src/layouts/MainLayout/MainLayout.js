@@ -20,7 +20,7 @@ const MainLayout = (props) => {
           <MediaQuery query="(min-width: 726px)">
             <Split
               sizes={[85, 15]}
-              style={{ display: 'flex', flex: '1 1 auto', alignItems: 'center' }}>
+              style={{ display: 'flex', flex: '1 1 auto' }}>
               {props.chatRoom}
               {props.connectedUsers}
             </Split>
